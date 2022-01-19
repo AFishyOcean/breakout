@@ -21,5 +21,5 @@ class Paddle(pygame.sprite.Sprite):
         self.image.fill(self.colour)
 
     def move(self, cor):
-        self.rect.x = cor
+        self.rect.x = cor[0]
 
