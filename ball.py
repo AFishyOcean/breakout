@@ -17,6 +17,7 @@ class Ball(pygame.sprite.Sprite):
         # background of your breakout game will be.
         self.image = pygame.Surface((2 * self.radius, 2 * self.radius))
         self.rect = self.image.get_rect()
+        self.image.fill(self.colour)
 
         # Add a circle to represent the ball to the surface just created. Just use the pygame.draw.circle method.
         # The surface will be self.image
@@ -32,5 +33,9 @@ class Ball(pygame.sprite.Sprite):
            self.x_speed = -self.x_speed
        if self.rect.top < 0 or self.rect.bottom > self.windowHeight:
            self.y_speed = -self.y_speed
-       if pygame.sprite.spritecollide(self, group, True):
-           self.y_speed = -self.y_speed
+    def collide_bricks(self, bricks):
+        if pygame.sprite.spritecollide(self, bricks, True):
+            self.y_speed = -self.y_speed
+    def collide_paddle(self, paddle):
+        if pygame.sprite.spritecollide(self, paddle, False):
+            self.y_speed = -self.y_speed
